@@ -14,7 +14,7 @@ node* remove_max_node (node* p_tree, node* p_max_node);
 node* find_max(node*tree);
 int getElementCount(node* tree);
 void traverse(node* tree);
-
+void destroy_tree_Iteratively(node* p_tree);
 
 int main(){
 
@@ -152,4 +152,41 @@ void traverse(node* tree)
         cout <<tree->key << endl;
         traverse(tree->right);
     }
+}
+void destroy_tree_Iteratively(node* p_tree)
+{
+    int nodesDestroyed = 0;
+
+    while (p_tree != NULL)
+    {
+        if (p_tree->p_left == NULL && p_tree->p_right == NULL)
+        {
+            node* placeHolder = p_tree;
+            p_tree = p_tree->parent;
+            if (p_tree != NULL && placeHolder->key_value < p_tree->key_value)
+            {
+                delete placeHolder;
+                nodesDestroyed++;
+                p_tree->p_left = NULL;
+            }
+            else if (p_tree != NULL && placeHolder->key_value >= p_tree->key_value)
+            {
+                delete placeHolder;
+                nodesDestroyed++;
+                p_tree->p_right = NULL;
+            }
+            else if (p_tree == NULL)
+            {
+                delete placeHolder;
+                nodesDestroyed++;
+                p_tree = NULL;
+            }
+        }
+
+        else if (p_tree->p_left != NULL)
+            p_tree = p_tree->p_left;
+        else if (p_tree->p_right != NULL)
+            p_tree = p_tree->p_right;
+    }
+    cout << "You've deleted " << nodesDestroyed << " nodes!" << endl;
 }

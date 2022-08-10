@@ -9,36 +9,16 @@ void GccSort(int arr[], int size);
 int main()
 {
     int size, input, num = 0;
-    srand(time(NULL));
-    do
-    {
     cout << "Specify the size of your array: ";
     cin >> size;
-    while (size <= 0)
-    {
-        cout << endl << "Pick a positive size, please don't be stupid: ";
-        cin >> size;
-    }
     int theArray[size];
-
     cout << endl << "Your current array: {";
-
+    int in;
     for (int i = 0; i < size; i++)
     {
-        theArray[i] = rand() % 10000;
-        cout << theArray[i];
-
-        if (i != size - 1)
-        {
-            cout << ", ";
-        }
-        if (i % 10 == 0 && i != 0)
-        {
-            cout << endl;
-        }
+       cin>>in;
+	theArray[i] = in;
     }
-    cout << "}" << endl;
-
     cout << endl << "Which sort do you wish to test? Input 0 to terminate." << endl << endl;
     cout << "1. Bubble" << endl << "2. Insertion" << endl << "3. Selection" << endl << "4. GCC Sort" << endl;
     cout << endl << "Choose the corresponding number: ";
